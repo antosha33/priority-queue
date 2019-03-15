@@ -7,6 +7,7 @@ class PriorityQueue {
     }else{
       this.maxSize = 30
     }
+    this.heap = new MaxHeap()
 	}
 
 	push(data, priority) {
