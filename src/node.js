@@ -31,12 +31,13 @@ class Node {
   }
 
   remove() {
-    if(this.parent == null) return
+    if(this.parent == null) return;
     this.parent.removeChild(this);
   }
 
   swapWithParent() {
-
+    if(this.parent == null) return;
+    this.parent.parent=this;
   }
 }
 
