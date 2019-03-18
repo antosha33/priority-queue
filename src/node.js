@@ -43,6 +43,15 @@ class Node {
       buffer = this.parent.parent;
       this.parent.parent = this;
       this.parent = buffer;
+    }else if(this.parent!= null && this.right==null && this.left != null){
+      buffer = this.left;
+      this.left = this.parent;
+      this.left.left = buffer;
+      this.right = this.parent.right;
+      this.right.parent = this;
+      this.left.right = null;
+      this.left.parent = this;
+      this.parent = null
     }else{
       buffer = this;
       this.parent.left.parent = buffer;
