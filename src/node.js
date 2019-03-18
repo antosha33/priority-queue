@@ -36,8 +36,19 @@ class Node {
   }
 
   swapWithParent() {
-    if(this.parent == null) return;
-    this.parent.parent=this;
+    var buffer;
+    if(this.parent == null){
+      return;
+    }else if(this.parent != null && this.parent.right == null){
+      buffer = this.parent.parent;
+      this.parent.parent = this;
+      this.parent = buffer;
+    }else{
+      buffer = this;
+      this.parent.left.parent = buffer;
+      this.parent.parent = buffer;
+      this.parent = null;
+    }
   }
 }
 

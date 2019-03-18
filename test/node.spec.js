@@ -138,7 +138,6 @@ describe('Node', () => {
 
 			root.appendChild(child);
 			child.appendChild(grandson);
-
 			grandson.swapWithParent();
 
 			expect(child.parent).to.equal(grandson);
