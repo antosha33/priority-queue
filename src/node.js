@@ -45,7 +45,6 @@ class Node {
       var branch;
       for(var key in this.parent.parent){
         if(this.parent.parent[key] == this.parent) {
-          console.log(key);
           branch = key;
           break;
         }
@@ -72,11 +71,6 @@ class Node {
       this.parent.parent = buffer;
       this.parent = null;
     }else{
-        // buffer = this.parent;
-        // this.parent.parent.left = this;
-        // this.parent.left = buffer;
-        // this.parent = null;
-
         buffer = this.parent.parent;
         this.parent.parent = this;
         this.parent = buffer;
