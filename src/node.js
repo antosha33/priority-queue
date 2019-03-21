@@ -8,13 +8,14 @@ class Node {
   }
 
   appendChild(node) {
-    if (this.left == null) {
+    if(this.left == null) {
       this.left = node;
-      this.right = null;
-      node.parent = this;
-    }else if(this.right == null){
+      this.left.parent = this;
+    }else if (this.right == null){
       this.right = node;
-      node.parent = this;
+      this.right.parent = this;
+    }else{
+      return;
     }
   }
 
@@ -34,46 +35,48 @@ class Node {
     if(this.parent == null) return;
     this.parent.removeChild(this);
   }
-
   swapWithParent() {
     var buffer;
     if(this.parent == null){
       return;
-
-    }
-    else if(this.parent != null && this.parent.parent != null && this.parent.parent.right != null){
-      var branch;
-      for(var key in this.parent.parent){
-        if(this.parent.parent[key] == this.parent) {
-          branch = key;
-          break;
-        }
-      }
-      buffer = this.parent;
-      this.parent.parent[branch] = this;
-      this.parent = this.parent.parent;
-      this.left = buffer;
-      buffer.parent = this;
-      buffer.left = null;
-    }
-    else if(this.parent!= null && this.right==null && this.left != null && this.parent.right.left == null){
-      buffer = this.left;
+    }else if(this.parent != null && this.parent.parent == null && this.parent.right == null){
+      this.parent.parent = this;
+      this.parent.left = null;
       this.left = this.parent;
-      this.left.left = buffer;
-      this.right = this.parent.right;
-      this.right.parent = this;
-      this.left.right = null;
-      this.left.parent = this;
-      this.parent = null
-    }else if (this.parent!= null && this.right == null && this.left == null && this.parent.left !=null && this.parent.right != null){
-      buffer = this;
-      this.parent.left.parent = buffer;
-      this.parent.parent = buffer;
       this.parent = null;
-    }else{
-        buffer = this.parent.parent;
-        this.parent.parent = this;
-        this.parent = buffer;
+      return;
+    }else if(this.parent != null && this.parent.parent != null){
+      var switcher;
+      switcher = (this.data == this.parent.parent.left.left.data) ? 'left' : 'right';
+      buffer = this.parent.parent;
+      this.left = this.parent;
+      buffer[switcher] = this;
+      this.parent.left = null;
+      this.parent = buffer;
+      this.left.parent = this;  
+      return;
+    }else if(this.parent != null && this.parent.parent == null && this.parent.right != null){
+      if(this.left != null){
+        buffer = this.left;
+        this.left = this.parent;
+        this.right = this.parent.right;
+        this.left.left = buffer;
+        this.left.right = null;
+        this.left.parent = this;
+        this.right.parent = this;
+        this.left.left.parent = this.left;
+        this.parent = null;
+        return;
+      }
+      buffer = this.parent.left;
+      this.parent.parent = this;
+      this.parent.left = null;
+      this.parent.right = null;
+      this.right = this.parent;
+      this.left = buffer;
+      this.parent = null;
+      this.left.parent = this;
+      return;
     }
   }
 }
