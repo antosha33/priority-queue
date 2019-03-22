@@ -22,12 +22,30 @@ class MaxHeap {
 	}
 
 	detachRoot() {
+    var indexRoot = this.parentNodes.indexOf(this.root);
+    var root = this.root;
     this.root = null;
-    return this.parentNodes.shift();
+    if(indexRoot == -1){
+      return root;
+    }else{
+      return this.parentNodes.shift();
+    }
 	}
 
 	restoreRootFromLastInsertedNode(detached) {
-		
+    this.root = this.parentNodes[this.parentNodes.length-1];
+    this.parentNodes.unshift(this.root.parent);
+    this.parentNodes[this.parentNodes.length-1].remove();
+    this.root.left = detached.left;
+    if(this.root.left != null) this.root.left.parent = this.root;
+    this.root.right = detached.right;
+    if(this.root.right != null) this.root.right.parent = this.root;
+    if(this.parentNodes.length == 3){
+      this.parentNodes[0] = this.parentNodes[this.parentNodes.length-1];
+      this.parentNodes.pop();
+    }else{
+      this.parentNodes.pop();
+    }
 	}
 
 	size() {
