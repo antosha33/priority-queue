@@ -93,7 +93,15 @@ class MaxHeap {
 	}
 
 	shiftNodeDown(node) {
-		
+    var maxNode = node.priority;
+    if(node.left){
+      if(node.left.priority > node.priority){
+          node.left.swapWithParent();
+          if(node.parent.priority > maxNode) maxNode = node.parent
+          this.root = maxNode;
+          this.shiftNodeUp(node.left);
+      }
+    }
 	}
 }
 
