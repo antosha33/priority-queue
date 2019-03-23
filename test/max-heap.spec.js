@@ -438,7 +438,7 @@ describe('MaxHeap', () => {
 
             expect(h.root).to.equal(newRoot);
             expect(h.root.right.left).to.equal(newDeepest);
-            // expect(h.parentNodes.map(n=>n.priority)).to.deep.equal([5,8,1,6]);
+            expect(h.parentNodes.map(n=>n.priority)).to.deep.equal([5,8,1,6]);
         });
 
 		it('calls Node.swapWithParent', () => {
