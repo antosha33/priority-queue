@@ -103,40 +103,40 @@ describe('PriorityQueue', () => {
 		// });
 	});
 
-	// describe('#size', () => {
-	// 	it('returns current size of queue', () => {
-	// 		const q = new Queue();
+	describe('#size', () => {
+		it('returns current size of queue', () => {
+			const q = new Queue();
 
-	// 		q.push(0, 1);
-	// 		expect(q.size()).to.equal(1);
+			q.push(0, 1);
+			expect(q.size()).to.equal(1);
 
-	// 		q.push(1, 2);
-	// 		expect(q.size()).to.equal(2);
+			q.push(1, 2);
+			expect(q.size()).to.equal(2);
 
-	// 		q.push(2, 3);
-	// 		expect(q.size()).to.equal(3);
+			q.push(2, 3);
+			expect(q.size()).to.equal(3);
 
-	// 		q.shift();
-	// 		q.shift();
+			q.shift();
+			q.shift();
 
-	// 		expect(q.size()).to.equal(1);
+			expect(q.size()).to.equal(1);
 
-	// 		q.shift();
-	// 		expect(q.size()).to.equal(0);
-	// 	});
-	// });
+			q.shift();
+			expect(q.size()).to.equal(0);
+		});
+	});
 
-	// describe('#isEmpty', () => {
-	// 	it('return true if queue is empty', () => {
-	// 		const q = new Queue();
+	describe('#isEmpty', () => {
+		it('return true if queue is empty', () => {
+			const q = new Queue();
 
-	// 		expect(q.isEmpty()).to.equal(true);
+			expect(q.isEmpty()).to.equal(true);
 
-	// 		q.push(0, 1);
-	// 		expect(q.isEmpty()).to.equal(false);
+			q.push(0, 1);
+			expect(q.isEmpty()).to.equal(false);
 
-	// 		q.shift();
-	// 		expect(q.isEmpty()).to.equal(true);
-	// 	});
-	// });
+			q.shift();
+			expect(q.isEmpty()).to.equal(true);
+		});
+	});
 });

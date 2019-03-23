@@ -28,11 +28,11 @@ class PriorityQueue {
 	}
 
 	size() {
-
+    return this.heap.sizeHeap;
 	}
 
 	isEmpty() {
-		
+		return this.heap.sizeHeap == 0 ? true : false;
 	}
 }
 
